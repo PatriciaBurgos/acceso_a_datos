@@ -30,16 +30,7 @@ public class Copiar_en_fichero {
             return;
         }
         
-        String nomFich = args[0];
-//        String cadena = "";
-//        int j = 0;
-//        for  (int i=1; i<args.length-1; i++){
-//            cadena += args[i] + (" ");
-//            j++;
-//        }
-//        cadena += args[j+1];
-//        System.out.println(cadena);
-        
+        String nomFich = args[0];       
         
         try (BufferedReader fbr = new BufferedReader (new FileReader(nomFich))){
             
@@ -52,15 +43,6 @@ public class Copiar_en_fichero {
                 bfw.write(linea);
                 bfw.newLine();
                 
-                
-//                if (linea.indexOf(cadena) < 0){
-//                    System.out.println("No se ha encontrado");
-//                }else {
-//                    System.out.println("*********");
-//                    System.out.println("Se ha encontrado la cadena: "+ cadena);
-//                    System.out.println("La linea de la palabra es: "+ i);
-//                    System.out.println("La columna de la palabra es: " +linea.indexOf(cadena));
-//                }
                 linea=fbr.readLine();
                 i++;
             }
