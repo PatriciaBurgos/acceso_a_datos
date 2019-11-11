@@ -12,7 +12,8 @@ _Ejercicios de la asignatura de acceso a datos de 2DAM curso 2019/2020_
 * Objetos serializables: Ejercicio que escribe y lee un array de objetos serializables
 
 ## ----Entregas----
-* Entraga Zero: Entrega sobre animales con interafaz gráfica
+* Entraga Cero: Entrega sobre animales con interafaz gráfica
+* Entrega Uno: Entrega con persistencia de datos a través de objetos serializables
 
 ## Construido con 🛠️
 
