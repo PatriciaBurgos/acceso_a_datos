@@ -10,6 +10,7 @@ _Ejercicios de la asignatura de acceso a datos de 2DAM curso 2019/2020_
 * Fichero aleatorio escribir: Ejercicio que escribe en un fichero usando RandomAccessFile
 * Fichero aleatorio leer: Ejercicio que lee de un fichero usando RandomAccessFile
 * Objetos serializables: Ejercicio que escribe y lee un array de objetos serializables
+* Leer escribir XML: Ejercicio que escribe en un xml y luego lee del archivo xml
 
 ## ----Entregas----
 * Entraga Cero: Entrega sobre animales con interafaz gráfica
