@@ -251,6 +251,7 @@ public class Ventana1 extends javax.swing.JFrame {
         int row = 0;
         row = this.jTable_biblioteca.getSelectedRow();
         
+        this.biblioteca_modificar.setId_biblioteca(bibliotecas.get(row).getId_biblioteca());
         this.biblioteca_modificar.setNombre(bibliotecas.get(row).getNombre());
         this.biblioteca_modificar.setTelefono(bibliotecas.get(row).getTelefono());
         this.biblioteca_modificar.setDireccion(bibliotecas.get(row).getDireccion());
@@ -425,7 +426,7 @@ public class Ventana1 extends javax.swing.JFrame {
     public void rellenar_un_combo_libro(int pos){
         this.jComboBox_libro.removeAllItems();
         for (int i = 0; i<this.bibliotecas.size();i++){
-            if(pos==bibliotecas.get(i).getId_ciudad()){
+            if(pos==bibliotecas.get(i).getId_biblioteca()){
                 this.jComboBox_libro.addItem(bibliotecas.get(i).getNombre());
             }
         }          
@@ -435,15 +436,18 @@ public class Ventana1 extends javax.swing.JFrame {
         int pos = -1;
         pos=this.jComboBox_libro.getSelectedIndex();
         for (int i = 0; i<this.bibliotecas.size();i++){
+            System.out.println("POS= " + pos +" I= "+i );
             if(pos==bibliotecas.get(i).getId_biblioteca()){
+                System.out.println("entro");
                 nueva.setId_biblioteca(pos);
+                System.out.println("ID=" + nueva.getId_biblioteca());
             }
         } 
     }
     
     public boolean busqueda_id_biblioteca_en_libro(boolean borrar, int pos){
-        int id = libros.get(pos).getId_biblioteca();
-        for(int i = 0; i<this.libros.size();i++){
+        int id = bibliotecas.get(pos).getId_biblioteca();
+        for(int i = 0; i<this.libros.size() && borrar;i++){
             if(libros.get(i).getId_biblioteca() == id){
                 borrar = false;
             }
@@ -451,8 +455,8 @@ public class Ventana1 extends javax.swing.JFrame {
         return borrar;
     }
     public boolean busqueda_id_libro_en_persona(boolean borrar, int pos){
-        int id = personas.get(pos).getId_libro();
-        for(int i = 0; i<this.personas.size();i++){
+        int id = libros.get(pos).getId_libro();
+        for(int i = 0; i<this.personas.size() && borrar;i++){
             if(personas.get(i).getId_libro() == id){
                 borrar = false;
             }
@@ -1550,6 +1554,7 @@ public class Ventana1 extends javax.swing.JFrame {
         if(modif_biblioteca==true){
             nueva = new Biblioteca(this.biblioteca_modificar.getId_biblioteca(),this.jTextField_nombre_biblioteca.getText(),this.jTextField_telefono.getText(),this.jTextField_direccion.getText(),this.biblioteca_modificar.getId_ciudad());
         }else{
+            System.out.println("idbib= " +id_biblioteca);
             nueva = new Biblioteca(id_biblioteca,this.jTextField_nombre_biblioteca.getText(),this.jTextField_telefono.getText(),this.jTextField_direccion.getText(),0);           
             id_biblioteca++;
         }
@@ -1601,6 +1606,7 @@ public class Ventana1 extends javax.swing.JFrame {
         
         int row = 0;
         row = this.jTable_libro.getSelectedRow();
+        System.out.println("row= "+ row);
         if(personas.size()!=0){
             borrar = this.busqueda_id_libro_en_persona(borrar,row);  
         }              
@@ -1627,6 +1633,7 @@ public class Ventana1 extends javax.swing.JFrame {
         }
         
         poner_id_libro(nueva);//PARA PONER EL ID DE LA biblioteca CUANDO SE MODIFICA, SE PONE EL SELECCIONADO
+        System.out.println("id= " + nueva.getId_biblioteca());
         
         libros.add(nueva);
         table_model_libro.addRow(new Object[]{libros.get(this.libros.size()-1).getTitulo(),libros.get(this.libros.size()-1).getAutor()});
@@ -1675,7 +1682,7 @@ public class Ventana1 extends javax.swing.JFrame {
         poner_id_persona(nueva);//PARA PONER EL ID DEL libro CUANDO SE MODIFICA, SE PONE EL SELECCIONADO
         
         personas.add(nueva);
-        table_model_persona.addRow(new Object[]{personas.get(this.libros.size()-1).getNombre(),personas.get(this.personas.size()-1).getDNI()});
+        table_model_persona.addRow(new Object[]{personas.get(this.personas.size()-1).getNombre(),personas.get(this.personas.size()-1).getDNI()});
         
         this.vaciar_campos_detallados_persona();
         this.vaciar_persona_modificar();
@@ -1790,6 +1797,7 @@ public class Ventana1 extends javax.swing.JFrame {
             System.out.printf("\tFin Elemento: %s %n", nombre);
             if(nombre == "Ciudad"){
                 ciudades.add(ciudad);
+                id_ciudad++;
                 ciudad = new Ciudad();
             }
         }	
@@ -1865,6 +1873,7 @@ public class Ventana1 extends javax.swing.JFrame {
             System.out.printf("\tFin Elemento: %s %n", nombre);
             if(nombre == "Biblioteca"){
                 bibliotecas.add(biblioteca);
+                id_biblioteca++;
                 biblioteca = new Biblioteca();
             }
         }	
@@ -1943,6 +1952,7 @@ public class Ventana1 extends javax.swing.JFrame {
             System.out.printf("\tFin Elemento: %s %n", nombre);
             if(nombre == "Libro"){
                 libros.add(libro);
+                id_libro++;
                 libro = new Libro();
             }
         }	
@@ -2023,6 +2033,7 @@ public class Ventana1 extends javax.swing.JFrame {
             System.out.printf("\tFin Elemento: %s %n", nombre);
             if(nombre == "Persona"){
                 personas.add(persona);
+                id_persona++;
                 persona = new Persona();
             }
         }	
