@@ -16,6 +16,7 @@ _Ejercicios de la asignatura de acceso a datos de 2DAM curso 2019/2020_
 * Entraga Cero: Entrega sobre animales con interafaz gráfica
 * Entrega Uno: Entrega con persistencia de datos a través de objetos serializables
 * Entrega Dos: Entrega con persistencia de datos a través de ficheros XML
+* Entrega Tres: Entrega con persistencia de datos a través de una base de datos local SQLite
 
 ## Construido con 🛠️
 
