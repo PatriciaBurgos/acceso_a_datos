@@ -223,4 +223,32 @@ public class test_cuarta_entrega {
         Assert.assertEquals(personas.get(0).getEdad(), edad);
         Assert.assertEquals(personas.get(0).getCiudad_natal(),ciudad_nat);
     }
+    
+    public void test_eliminar_y_leer_en_base_de_datos_persona(){
+        int id = 0;
+        ArrayList<Persona> personas = new ArrayList();
+        
+        ObjectContainer db = Db4o.openFile("test_personas.db4o");
+        Persona p = new Persona(id,null,null,null,null,0);
+        ObjectSet result = db.queryByExample(p); 
+        Persona p2 = (Persona) result.next();
+        db.delete(p2);
+        
+        Query q = db.query();
+        q.constrain(Persona.class);
+        result = q.execute();       
+        System.out.println(result.size());
+        while(result.hasNext()) {
+            Persona per = new Persona();
+            per = (Persona) result.next();
+            personas.add(p);
+        }
+        db.close();
+        
+        Assert.assertEquals(personas.size(), 0);
+        Assert.assertEquals(personas.get(0).getId_persona(),null);
+        Assert.assertEquals(personas.get(0).getDNI(),null);
+        Assert.assertEquals(personas.get(0).getNombre(),null);
+        Assert.assertEquals(personas.get(0).getEdad(),null);
+    }
 }
