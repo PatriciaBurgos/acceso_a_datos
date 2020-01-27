@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-ene-2020 16:30:13 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="libros" name="ORM.Ciudad" optimistic-lock="version" table="ciudad">
+    <id name="idCiudad" type="java.lang.Integer">
+      <column name="id_ciudad"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="15" name="nombre"/>
+    </property>
+    <property name="pais" type="string">
+      <column length="15" name="pais"/>
+    </property>
+    <property name="numHabitantes" type="java.lang.Integer">
+      <column name="num_habitantes"/>
+    </property>
+  </class>
+</hibernate-mapping>
