@@ -430,9 +430,9 @@ public class Ventana1 extends javax.swing.JFrame {
         this.rellenar_campos_detallados_ciudad();
     }//GEN-LAST:event_jTable_ciudadMouseClicked
     
-    private static String nomClaseDS = "net.xqj.exist.ExistXQDataSource"; 
+    public static String nomClaseDS = "net.xqj.exist.ExistXQDataSource"; 
 	
-    private static XQConnection obtenConexion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, XQException {
+    public static XQConnection obtenConexion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, XQException {
         XQDataSource xqs = (XQDataSource) Class.forName(nomClaseDS).newInstance();
         xqs.setProperty("serverName", "localhost");
         xqs.setProperty("port", "8080");
@@ -441,13 +441,13 @@ public class Ventana1 extends javax.swing.JFrame {
         return xqs.getConnection();
     }
 
-    private static void muestraErrorXQuery (XQException e){
+    public static void muestraErrorXQuery (XQException e){
         System.err.println("Xquery ERROR mensaje: " + e.getMessage());
         System.err.println("Xquery ERROR causa: " + e.getCause());
         System.err.println("Xquery ERROR código: " + e.getVendorCode());
     } 
     
-    public String limpiar_cadena (String cad){
+    public static String limpiar_cadena (String cad){
         cad=cad.replace("\n","");
         cad=cad.replace(" ","");
         cad=cad.replace("\t","");
@@ -455,7 +455,7 @@ public class Ventana1 extends javax.swing.JFrame {
         return cad;
     }
     
-    public void leer_ciudades() throws SQLException {   
+    public static void leer_ciudades() throws SQLException {   
         
         //ES LO QUE ME FALTA
         
@@ -501,7 +501,7 @@ public class Ventana1 extends javax.swing.JFrame {
                             ciu.setNumHabitantes(Integer.valueOf(cadena));
                             cont++;
                         }else if(cont==4){
-                            this.ciudades.add(ciu);
+                            Ventana1.ciudades.add(ciu);
                             cont++;
                         }
                     } 
@@ -528,7 +528,7 @@ public class Ventana1 extends javax.swing.JFrame {
            
     }
     
-    public void insertar_una_ciudad (int id, String nombre, String pais, int num_hab) throws SQLException{
+    public static void insertar_una_ciudad (int id, String nombre, String pais, int num_hab) throws SQLException{
         XQConnection c = null; 
         try { 
             c = obtenConexion(); 
@@ -563,7 +563,7 @@ public class Ventana1 extends javax.swing.JFrame {
         } 
     }
     
-    public void eliminar_una_ciudad(int id) throws SQLException{
+    public static void eliminar_una_ciudad(int id) throws SQLException{
         XQConnection c = null; 
         try { 
             c = obtenConexion(); 
@@ -724,32 +724,11 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_num_habitantes;
     private javax.swing.JTextField jTextField_pais;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<Ciudad> ciudades;
+    public static ArrayList<Ciudad> ciudades;
     private Ciudad ciudad_modificar;
     private DefaultTableModel table_model_ciudad;    
     private Boolean modif_ciudad;
     private int id_ciu;
     private int row_ciu;
     
-    private ArrayList<Biblioteca> bibliotecas;
-    private Biblioteca biblioteca_modificar;
-    private DefaultTableModel table_model_biblioteca;    
-    private Boolean modif_biblioteca;
-    private int id_bib;
-    private int row_bib;
-    
-    private ArrayList<Libro> libros;
-    private Libro libro_modificar;
-    private DefaultTableModel table_model_libro;    
-    private Boolean modif_libro;
-    private int id_lib;
-    private int row_lib;
-    
-    private ArrayList<Persona> personas;
-    private Persona persona_modificar;
-    private DefaultTableModel table_model_persona;    
-    private Boolean modif_persona;
-    private int id_per;
-    private int row_per;
-  
 }
