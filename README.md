@@ -20,6 +20,7 @@ _Ejercicios de la asignatura de acceso a datos de 2DAM curso 2019/2020_
 * Entrega Cuatro: Entrega con persistencia de datos a través de una base de datos DB4O
 * Entrega Cinco: Entrega con persistencia de datos a través de Hibernate
 * Entrega Seis: Entrega con persistencia de datos a través de eXist-db
+* Entrega Siete: Entrega con persistencia de datos a través de Hibernate en una Página Web
 
 ## Construido con 🛠️
 
