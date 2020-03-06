@@ -4,9 +4,21 @@
     Author     : patri
 --%>
 
+<%@page import="org.hibernate.Session"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <jsp:useBean id="ciudad" scope="request" class="ORM.Ciudad"/> 
 <jsp:setProperty name="ciudad" property="*"/> 
+<%
+    ORM.Ciudad ciudadBean = (ORM.Ciudad) request.getAttribute("ciudad"); 
+    if (ciudadBean == null) {
+%>
+ERROR: no se especific&oacute; ciudad a mostrar.
+<%
+} else {
+    Session s = ORM.NewHibernateUtil.getInstance().getSessionFactory().openSession();
+		try  { 
+                    s.refresh(ciudadBean);
+%>
 <!DOCTYPE html> 
 <html> 
 	<head> 
@@ -19,22 +31,22 @@
 				<tr> 
 					<td> 
 						<input type="hidden" name="op" value="actCiudad"/>
-                                                <input type="hidden" name="idCiudad" value="<%=ciudad.getIdCiudad()%>"/>
+                                                <!--<input type="hidden" name="idCiudad" value="<%=ciudad.getIdCiudad()%>"/>
                                                 <p>Nombre:</p>
 						<input name="nombre" required type="text" size="20"  maxlength="20"/> 
                                                 <p>Pais:</p>
                                                 <input name="pais" required type="text" size="20"  maxlength="20"/> 
                                                 <p>Numero de Habitantes:</p>
                                                 <input name="numHabitantes" required type="number" size="20"  maxlength="20"/> 
-                                                <p></p>
-                                                <!--<input name="idCiudad" value="<%=ciudad.getIdCiudad()%>"/>
+                                                <p></p>-->
+                                                <input type="hidden" name="idCiudad" value="<%=ciudad.getIdCiudad()%>"/>
                                                 <p>Nombre:</p>
 						<input name="nombre" required type="text" value="<%=ciudad.getNombre()%>" size="20"  maxlength="20"/> 
                                                 <p>Pais:</p>
                                                 <input name="pais" required type="text" value="<%=ciudad.getPais()%>" size="20"  maxlength="20"/> 
                                                 <p>Numero de Habitantes:</p>
                                                 <input name="numHabitantes" required type="number" value="<%=ciudad.getNumHabitantes()%>" size="20"  maxlength="20"/> 
-                                                <p></p>-->
+                                                <p></p>
 					</td> 
 				</tr> 
 				<tr> 
@@ -47,4 +59,10 @@
 		</form> 
 		<a href="controlador">Inicio</a> 
 	</body> 
-</html> 
+</html>
+<%
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+    }
+%>
